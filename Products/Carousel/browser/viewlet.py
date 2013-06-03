@@ -82,6 +82,9 @@ class CarouselViewlet(ViewletBase):
         width, height = banners[0].getSize()
         self.height = settings.height or height or 0
         self.width = settings.width or width or 0
+        if settings.responsive:
+            self.height = "'100%'"
+            self.width = "'100%'"
         self.transition = settings.transition_type
         self.speed = int(settings.transition_speed * 1000)
         self.delay = int(settings.transition_delay * 1000)

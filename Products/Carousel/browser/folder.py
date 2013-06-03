@@ -78,6 +78,7 @@ class CarouselSettings(Persistent):
     transition_speed = 0.5
     transition_delay = 8.0
     default_page_only = True
+    responsive = False
     lazyload = False
     random_order = False
 
@@ -95,8 +96,9 @@ class AppearanceGroup(group.Group):
     label = _(u'Appearance')
     fields = field.Fields(ICarouselSettings).select(
         'banner_template', 'banner_elements', 'width', 'height',
-        'pager_template', 'element_id', 'lazyload', 'random_order')
+        'pager_template', 'element_id', 'lazyload', 'random_order', 'responsive')
     fields['banner_elements'].widgetFactory = CheckBoxFieldWidget
+    fields['responsive'].widgetFactory = SingleCheckBoxFieldWidget
     fields['lazyload'].widgetFactory = SingleCheckBoxFieldWidget
     fields['random_order'].widgetFactory = SingleCheckBoxFieldWidget
 

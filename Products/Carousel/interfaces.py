@@ -126,6 +126,12 @@ class ICarouselSettings(Interface):
         default=False,
     )
 
+    responsive = schema.Bool(
+        title=_(u'Enabled responsive carousel images'),
+        description=_(u'Check this box to show images witout inline size.'),
+        default=False,
+    )
+
 
 class ICarouselSettingsView(Interface):
     """
