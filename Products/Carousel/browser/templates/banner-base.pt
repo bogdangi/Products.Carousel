@@ -1,5 +1,6 @@
 <div metal:define-macro="banners" 
     class="carousel-banners"
+    tal:attributes="class python:'carousel-banners carousel-responsive' if settings.responsive else 'carousel-banners'"
     tal:define="banners context/getBanners;
         settings context/getSettings;
         elements settings/banner_elements;">

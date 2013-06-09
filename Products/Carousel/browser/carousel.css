@@ -40,3 +40,6 @@
 .carousel-settings-introduction {
     margin-bottom: 1em;
 }
+.carousel-responsive .carousel-image img {
+    width: 100%;
+}

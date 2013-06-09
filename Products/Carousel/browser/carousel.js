@@ -247,6 +247,12 @@
     carousel.play();
     carousel.parent_container.hover(carousel.pause, carousel.play);
     carousel.banners.eq(0).addClass('carousel-banner-active');
+    if (carousel.parent_container.children().hasClass('carousel-responsive')){
+        $.fn.ploneCarousel.resizeEvent(carousel);
+        $(window).resize(function(){
+            $.fn.ploneCarousel.resizeEvent(carousel);
+        });
+    }
   };
 
   $.fn.ploneCarousel.initPager = function (carousel) {
@@ -279,6 +285,18 @@
       pager_items.removeClass('carousel-pager-item-active')
         .eq(new_index).addClass('carousel-pager-item-active');
     });
+  };
+
+  $.fn.ploneCarousel.resizeEvent = function (carousel) {
+      var firstImage = carousel.parent_container.find('.carousel-image img')[0];
+      $("<img/>") // Make in memory copy of image to avoid css issues
+          .attr("src", $(firstImage).attr("src"))
+          .load(function() {
+              w = this.width;   // Note: $(this).width() will not
+              h = this.height; // work for in memory images.
+              banner = carousel.parent_container.find('.carousel-banners');
+              banner.height( banner.width()/w*h );
+          });
   };
 
 })(jQuery);
